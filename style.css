@@ -1,0 +1,70 @@
+.container {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  text-align: left;
+}
+
+h2 {
+  text-align: left;
+}
+
+h3 {
+  text-align: center;
+}
+
+h4 {
+  opacity: 70%;
+}
+
+p {
+  text-align: center;
+  font-size: larger;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 50%;
+}
+
+.card-body {
+  font-style: italic;
+}
+
+.temperature {
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  box-sizing: border-box;
+  opacity: 70%;
+  font-size: calc(1.275rem + 0.3vw);
+}
+
+.units {
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  box-sizing: border-box;
+  opacity: 70%;
+  font-size: calc(1.275rem + 0.3vw);
+}
+
+.humidity {
+  display: block;
+  opacity: 70%;
+  font-size: calc(1.275rem + 0.3vw);
+}
+
+.wind {
+  display: block;
+  opacity: 70%;
+  font-size: calc(1.275rem + 0.3vw);
+}
+
+form {
+  display: inline;
+}
