@@ -1,44 +1,26 @@
 //Finding & formatting Date and Time 
 
-function formattingCurrentDate () {
+function formatDateAndTime (timestamp) {
+    let dateNow = new Date (timestamp);
+    console.log(dateNow);
+     let date = dateNow.getDate();
 
-    let dateNow = new Date();
+    let months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    let month = months[dateNow.getMonth()];
 
-  let date = dateNow.getDate();
-  let year = dateNow.getFullYear();
+    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let day = days[dateNow.getDay()];
 
-  let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Decemeber"];
-  let month = months[dateNow.getMonth()];
-
-  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  let day = days[dateNow.getDay()];
-
-  return `${day} ${date} ${month} ${year}`;
-}
-
-let dateToday = document.querySelector("#date-today");
-dateToday.innerHTML = formattingCurrentDate();
-
-
-
-function formattingCurrentTime () {
-
-    let timeNow = new Date();
-
-    let hour = timeNow.getHours();
+    let hour = dateNow.getHours();
       if (hour < 10) {
        hour = `0${hour}`;}
 
-    let minutes = timeNow.getMinutes();
+    let minutes = dateNow.getMinutes();
       if (minutes < 10) {
         minutes = `0${minutes}`}
 
-    return `${hour}:${minutes}`;
+    return `${day} ${date} ${month}, ${hour}:${minutes}`;
 }
-
-let currentTime = document.querySelector("#current-time");
-currentTime.innerHTML = formattingCurrentTime();
-
 
 //Weather
 
@@ -76,6 +58,8 @@ function showWeather (response) {
     let windElement = document.querySelector("#wind");
     let weatherDescriptionElement = document.querySelector("#weather-description");
     let iconElement = document.querySelector ("#weather-icon");
+    let dateElement = document.querySelector ("#date-today");
+    
 
 //Step 6
     let cityName = response.data.name;
@@ -89,8 +73,9 @@ function showWeather (response) {
     weatherDescriptionElement.innerHTML = response.data.weather[0].description;
     iconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+    dateElement.innerHTML = formatDateAndTime (response.data.dt * 1000);
+ 
 }
 
 
