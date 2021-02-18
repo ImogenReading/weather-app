@@ -79,8 +79,9 @@ function showWeather (response) {
     let wind = (response.data.wind.speed)*2.2;
     let windRounded = Math.round(wind);
     let temperatureElement = document.querySelector("#temperature");
-    let humidityElement = document.querySelector("#humidity")
-    let windElement = document.querySelector("#wind")
+    let humidityElement = document.querySelector("#humidity");
+    let windElement = document.querySelector("#wind");
+    let weatherDescriptionElement = document.querySelector("#weather-description");
 
 //Step 6
     let cityName = response.data.name;
@@ -91,6 +92,7 @@ function showWeather (response) {
     temperatureElement.innerHTML = temperature;
     humidityElement.innerHTML = `Humidity: ${response.data.main.humidity}%`;
     windElement.innerHTML = `Wind: ${windRounded}mph`;
+    weatherDescriptionElement.innerHTML = response.data.weather[0].description;
 }
 
 
