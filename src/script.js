@@ -89,8 +89,8 @@ function showWeather (response) {
 
 //Step 7
     temperatureElement.innerHTML = temperature;
-    humidityElement.innerHTML = `Humidity: ${response.data.main.humidity} %`;
-    windElement.innerHTML = `Wind: ${windRounded} mph`;
+    humidityElement.innerHTML = `Humidity: ${response.data.main.humidity}%`;
+    windElement.innerHTML = `Wind: ${windRounded}mph`;
 }
 
 
