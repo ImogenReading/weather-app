@@ -75,6 +75,7 @@ function showWeather (response) {
     let humidityElement = document.querySelector("#humidity");
     let windElement = document.querySelector("#wind");
     let weatherDescriptionElement = document.querySelector("#weather-description");
+    let iconElement = document.querySelector ("#weather-icon");
 
 //Step 6
     let cityName = response.data.name;
@@ -86,6 +87,10 @@ function showWeather (response) {
     humidityElement.innerHTML = `Humidity: ${response.data.main.humidity}%`;
     windElement.innerHTML = `Wind: ${windRounded}mph`;
     weatherDescriptionElement.innerHTML = response.data.weather[0].description;
+    iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 
