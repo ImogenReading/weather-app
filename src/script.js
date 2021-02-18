@@ -44,31 +44,24 @@ currentTime.innerHTML = formattingCurrentTime();
 
 
 //Step 3 
-function cityInputInSearchField(){
-    let originalSearchInput = document.querySelector("#search-text-input");
-    console.log(originalSearchInput.value);
-    return originalSearchInput.value;
+function handleSubmit(event) {
+  event.preventDefault();
+  let originalSearchInput = document.querySelector("#search-text-input");
+  search(originalSearchInput.value);
 }
-
-
 
 // Step 2 
 // Step 4 
-function search(event) {
-    event.preventDefault();
-   // let searchInput = document.querySelector("#search-text-input");
-    let searchInput = cityInputInSearchField(); 
-
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&appid=6b93f7db7d89a630dd34ca79b7238880&units=metric`;
+function search(city) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=6b93f7db7d89a630dd34ca79b7238880&units=metric`;
     console.log(apiUrl);
 
     axios.get(apiUrl).then(showWeather);
 }
 
-
 // Step 1
 let form = document.querySelector("#search-form"); 
-form.addEventListener("submit", search);
+form.addEventListener("submit", handleSubmit);
 
 
 //Step 5
@@ -138,9 +131,9 @@ function convertToCel(event) {
 
 let celTemp = document.querySelector("#celsius-link");
 celTemp.addEventListener("click", convertToCel);
-           
 
 
+search ("Edinburgh");
 
 
 
