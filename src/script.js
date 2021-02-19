@@ -24,16 +24,14 @@ function formatDateAndTime (timestamp) {
 
 //Weather
 
-
-//Step 3 
+//Search Submit 
 function handleSubmit(event) {
   event.preventDefault();
   let originalSearchInput = document.querySelector("#search-text-input");
   search(originalSearchInput.value);
 }
 
-// Step 2 
-// Step 4 
+//Feeding in City, Calling API, sending Result to showWeather Function 
 function search(city) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=6b93f7db7d89a630dd34ca79b7238880&units=metric`;
     console.log(apiUrl);
@@ -41,12 +39,12 @@ function search(city) {
     axios.get(apiUrl).then(showWeather);
 }
 
-// Step 1
+// Controlling HTML
 let form = document.querySelector("#search-form"); 
 form.addEventListener("submit", handleSubmit);
 
 
-//Step 5
+//Selecting the right elements and formatting them, from what the API returned 
 function showWeather (response) {
     console.log(response.data);
 
@@ -60,13 +58,15 @@ function showWeather (response) {
     let iconElement = document.querySelector ("#weather-icon");
     let dateElement = document.querySelector ("#date-today");
     
-
-//Step 6
+//City Name Entered now comes from API
     let cityName = response.data.name;
     let city = document.querySelector("#city-name")
     city.innerHTML = cityName;
 
-//Step 7
+    celsiusTemperature = response.data.main.temp; 
+    // Can use above in let temperature 
+
+//Presenting Translated Variables on HTML
     temperatureElement.innerHTML = temperature;
     humidityElement.innerHTML = `Humidity: ${response.data.main.humidity}%`;
     windElement.innerHTML = `Wind: ${windRounded}mph`;
@@ -75,11 +75,8 @@ function showWeather (response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
     dateElement.innerHTML = formatDateAndTime (response.data.dt * 1000);
- 
 }
 
-
-//Current Location Button Linking to showWeather Function Above
 
 function findCurrentLocation() {
   navigator.geolocation.getCurrentPosition(defineLatLonLocation);
@@ -97,32 +94,42 @@ let currentLocationButton = document.querySelector ("#current-location-button")
 currentLocationButton.addEventListener("click", findCurrentLocation)
 
 
-//Changing from °C to °F
+//Changing from °C to °F - Unit Conversion 
 
+// °F Conversion 
 function convertToFah(event) {
     event.preventDefault();
     let tempElement = document.querySelector("#temperature");
-    let temperature = tempElement.innerHTML;
-    temperature = Number(temperature);
-    tempElement.innerHTML = Math.round((temperature * 9) / 5 + 32);
+    //let temperature = tempElement.innerHTML;
+    //temperature = Number(temperature);
+    celTemp.classList.remove("active");
+    fahTemp.classList.add("active");
+    tempElement.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32);
     }
 
 let fahTemp = document.querySelector("#fahrenheit-link");
 fahTemp.addEventListener("click", convertToFah);
 
-
+// °C Conversion 
 function convertToCel(event) {
     event.preventDefault();
+    celTemp.classList.add("active");
+    fahTemp.classList.remove("active");
     let tempElement = document.querySelector("#temperature");
-    let temperature = tempElement.innerHTML;
-    temperature = Number(temperature);
-    tempElement.innerHTML = Math.round(((temperature - 32) * 5) / 9);
+    tempElement.innerHTML = Math.round (celsiusTemperature);
+    //let temperature = tempElement.innerHTML;
+    //temperature = Number(temperature);
+    //tempElement.innerHTML = Math.round(((temperature - 32) * 5) / 9);
     }
+
+let celsiusTemperature = null;
 
 let celTemp = document.querySelector("#celsius-link");
 celTemp.addEventListener("click", convertToCel);
 
 
+
+// Default City to be fed through on load
 search ("Edinburgh");
 
 
