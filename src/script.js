@@ -19,8 +19,23 @@ function formatDateAndTime (timestamp) {
       if (minutes < 10) {
         minutes = `0${minutes}`}
 
-    return `${day} ${date} ${month}, ${hour}:${minutes}`;
+    return `${day} ${date} ${month}, ${formatTime (timestamp)}`;
 }
+
+function formatTime (timestamp) {
+    let dateNow = new Date (timestamp);
+
+    let hour = dateNow.getHours();
+      if (hour < 10) {
+       hour = `0${hour}`;}
+
+    let minutes = dateNow.getMinutes();
+      if (minutes < 10) {
+        minutes = `0${minutes}`}
+
+        return `${hour}:${minutes}`;
+}
+
 
 //Weather
 
@@ -31,12 +46,37 @@ function handleSubmit(event) {
   search(originalSearchInput.value);
 }
 
+function dispalyHourForecast (response) {
+    let forecastElement = document.querySelector ("#forecast")
+    forecastElement.innerHTML = null;
+    let forecast = null;
+
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `  
+    <div class="col-2">
+                    <h3>
+                        ${formatTime(forecast.dt * 1000)}
+                    </h3>
+                    <img src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"/>
+                    <div class="hour-temperature">
+                        <stong>${Math.round(forecast.main.temp_max)}°C</stong> | ${Math.round(forecast.main.temp_min)}°C
+                    </div>
+                </div>`
+    }
+
+    console.log(response.data);
+}
+
 //Feeding in City, Calling API, sending Result to showWeather Function 
 function search(city) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=6b93f7db7d89a630dd34ca79b7238880&units=metric`;
     console.log(apiUrl);
 
     axios.get(apiUrl).then(showWeather);
+
+    apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=6b93f7db7d89a630dd34ca79b7238880&units=metric`;
+    axios.get(apiUrl).then(dispalyHourForecast);
 }
 
 // Controlling HTML

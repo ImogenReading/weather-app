@@ -125,6 +125,19 @@ img {
   font-size: 7px;
 }
 
+.hour-temperature{
+  display: block;
+  opacity: 70%;
+  display: inline;
+  font-size: 7px;
+}
+
+.days-weather-forecast img {
+  width: 20px;
+  height: 20px;
+}
+
+
 hr {
   margin-top: 5px;
   margin-bottom: 5px;
