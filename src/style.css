@@ -6,7 +6,6 @@
   border: 2px solid rgb(112, 112, 112);
   border-radius: 10px;
   text-align: center;
-  font-size: smaller;
   background-color:white ;
 }
 
@@ -16,7 +15,7 @@
   color: white;
   border-radius: 7px;
   margin: 0px;
-  font-size: 8px;
+  font-size: 10px;
 }
 
 #current-location-button {
@@ -25,12 +24,12 @@
   color: white;
   border-radius: 7px;
   margin: 0px;
-  font-size: 8px;
+  font-size: 10px;
 }
 
 #search-text-input {
   text-align: center;
-  font-size: 9px;
+  font-size: 11px;
 }
 
 form {
@@ -38,25 +37,25 @@ form {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 32px;
   margin-bottom: 0px;
 }
 
 h2 {
   opacity: 70%;
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: 12px;
   margin-bottom: 5px;
 }
 
 #weather-icon {
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
 }
 
 h3 {
   opacity: 70%;
-  font-size: 10px;
+  font-size: 12px;
   margin-bottom: 0px;
 }
 
@@ -76,27 +75,21 @@ img {
 }
 
 .temperature {
-  margin-block-start: 1.33em;
-  margin-block-end: 1.33em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+  margin-top: 0px;
   box-sizing: border-box;
   opacity: 70%;
-  font-size: calc(1.275rem + 0.3vw);
+  font-size: 40px;
+  line-height: 25px;
 }
 
 
 .units {
-  margin-block-start: 1.33em;
-  margin-block-end: 1.33em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+  
   box-sizing: border-box;
   opacity: 70%;
-  font-size: calc(1.275rem + 0.3vw);
   font-size: 10px;
   position: relative;
-  top: -8px;
+  top: -17px;
   text-decoration: none;
 }
 
@@ -113,16 +106,16 @@ img {
 
 .humidity {
   display: block;
-  opacity: 70%;
+  opacity: 80%;
   display: inline;
-  font-size: 7px;
+  font-size: 10px;
 }
 
 .wind {
   display: block;
-  opacity: 70%;
+  opacity: 80%;
   display: inline;
-  font-size: 7px;
+  font-size: 10px;
 }
 
 .hour-temperature{
@@ -133,8 +126,8 @@ img {
 }
 
 .days-weather-forecast img {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 }
 
 
@@ -150,5 +143,10 @@ hr {
   font-size: 8px;
   margin-bottom: 5px;
   margin-top: 5px;
+}
+
+.hour-temperature {
+  font-size: 10px;
+
 }
 
