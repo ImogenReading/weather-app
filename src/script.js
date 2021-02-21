@@ -11,14 +11,6 @@ function formatDateAndTime (timestamp) {
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let day = days[dateNow.getDay()];
 
-    let hour = dateNow.getHours();
-      if (hour < 10) {
-       hour = `0${hour}`;}
-
-    let minutes = dateNow.getMinutes();
-      if (minutes < 10) {
-        minutes = `0${minutes}`}
-
     return `${day} ${date} ${month}, ${formatTime (timestamp)}`;
 }
 
@@ -46,7 +38,7 @@ function handleSubmit(event) {
   search(originalSearchInput.value);
 }
 
-function dispalyHourForecast (response) {
+function displayHourForecast (response) {
     let forecastElement = document.querySelector ("#forecast")
     forecastElement.innerHTML = null;
     let forecast = null;
@@ -76,7 +68,7 @@ function search(city) {
     axios.get(apiUrl).then(showWeather);
 
     apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=6b93f7db7d89a630dd34ca79b7238880&units=metric`;
-    axios.get(apiUrl).then(dispalyHourForecast);
+    axios.get(apiUrl).then(displayHourForecast);
 }
 
 // Controlling HTML
@@ -128,6 +120,9 @@ function defineLatLonLocation (position) {
   let lon = position.coords.longitude;
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=6b93f7db7d89a630dd34ca79b7238880`;
   axios.get(url).then(showWeather);
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=6b93f7db7d89a630dd34ca79b7238880&units=metric`;
+  axios.get(apiUrl).then(displayHourForecast);
 }
 
 let currentLocationButton = document.querySelector ("#current-location-button")
@@ -170,7 +165,7 @@ celTemp.addEventListener("click", convertToCel);
 
 
 // Default City to be fed through on load
-search ("Edinburgh");
+search ("New York");
 
 
 
