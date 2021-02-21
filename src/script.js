@@ -11,7 +11,7 @@ function formatDateAndTime (timestamp) {
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let day = days[dateNow.getDay()];
 
-    return `${day} ${date} ${month}, ${formatTime (timestamp)}`;
+    return `Last Updated: ${day} ${date} ${month}, ${formatTime (timestamp)}`;
 }
 
 function formatTime (timestamp) {
